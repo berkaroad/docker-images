@@ -4,6 +4,7 @@ MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
+		apt-utils \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
