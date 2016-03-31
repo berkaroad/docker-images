@@ -18,7 +18,7 @@ RUN mkdir -p /data/sites-enabled \
 	&& mkdir -p /data/conf.d \
 	&& mkdir -p /data/wwwroot \
 	&& chown -R www-data:www-data /data \
-	&& chmod +x /entrypoint.conf
+	&& chmod +x /entrypoint.sh
 
 VOLUME /data/sites-enabled
 VOLUME /data/conf.d
