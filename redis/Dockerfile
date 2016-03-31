@@ -36,3 +36,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "redis-server" ]
 
 EXPOSE 6379
+EXPOSE 16379
