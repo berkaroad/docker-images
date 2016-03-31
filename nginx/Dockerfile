@@ -17,10 +17,8 @@ COPY nginx.conf /nginx.conf
 RUN mkdir -p /data/sites-enabled \
 	&& mkdir -p /data/conf.d \
 	&& mkdir -p /data/wwwroot \
-	&& chown -R www-data:www-data /data
-	&& chmod 744 /entrypoint.conf \
-	&& chown www-data:www-data /nginx.conf \
-	&& chmod 644 /nginx.conf
+	&& chown -R www-data:www-data /data \
+	&& chmod +x /entrypoint.conf
 
 VOLUME /data/sites-enabled
 VOLUME /data/conf.d
