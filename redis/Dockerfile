@@ -37,7 +37,7 @@ VOLUME /data
 WORKDIR /data
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "redis-server" ]
+CMD [ "redis-server", "/redis.conf" ]
 
 EXPOSE 6379
 EXPOSE 16379
