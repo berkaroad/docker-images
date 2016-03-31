@@ -24,14 +24,18 @@ RUN buildDeps='gcc libc6-dev make' \
 	&& rm -r /usr/src/redis \
 	&& apt-get purge -y --auto-remove $buildDeps
 
-RUN mkdir /data && chown redis:redis /data
+COPY docker-entrypoint.sh /entrypoint.sh
+COPY gosu /usr/local/bin/gosu
+COPY redis.conf /redis.conf
+
+RUN mkdir /data \
+	&& chown redis:redis /data \
+	&& chmod +x /entrypoint.sh \
+	&& chmod +x /usr/local/bin/gosu
+
 VOLUME /data
 WORKDIR /data
 
-COPY docker-entrypoint.sh /entrypoint.sh
-COPY redis.conf /redis.conf
-
-User redis
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "redis-server" ]
 
