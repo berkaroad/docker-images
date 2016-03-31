@@ -18,7 +18,6 @@ RUN mkdir -p /data/sites-enabled \
 	&& mkdir -p /data/conf.d \
 	&& mkdir -p /data/wwwroot \
 	&& chown -R www-data:www-data /data
-	&& chown www-data:www-data /entrypoint.sh \
 	&& chmod 744 /entrypoint.conf \
 	&& chown www-data:www-data /nginx.conf \
 	&& chmod 644 /nginx.conf
