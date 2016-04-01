@@ -1,14 +1,14 @@
 FROM debian:jessie
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r redis && useradd -r -g redis redis
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
 		apt-utils \
 	&& rm -rf /var/lib/apt/lists/*
+
+# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+RUN groupadd -r redis && useradd -r -g redis redis
 
 # for redis-sentinel see: http://redis.io/topics/sentinel
 RUN buildDeps='gcc libc6-dev make' \
