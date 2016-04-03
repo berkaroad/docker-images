@@ -33,3 +33,8 @@ WORKDIR /data
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "haproxy", "-f", "/haproxy.cfg" ]
 
+EXPOSE 80
+EXPOSE 443
+EXPOSE 3306
+EXPOSE 3307
+EXPOSE 8888
