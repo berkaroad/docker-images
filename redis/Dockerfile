@@ -7,16 +7,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		apt-utils \
 	&& rm -rf /var/lib/apt/lists/*
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r redis && useradd -r -g redis redis
 
-# for redis-sentinel see: http://redis.io/topics/sentinel
-RUN buildDeps='gcc libc6-dev make' \
+COPY redis-3.0.7.tar.gz redis.tar.gz
+
+RUN buildDeps='gcc libc6-dev libjemalloc-dev make' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/src/redis \
-	&& curl -sSL "http://download.redis.io/redis-stable.tar.gz" -o redis.tar.gz \
 	&& tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \
 	&& rm redis.tar.gz \
 	&& make -C /usr/src/redis \
