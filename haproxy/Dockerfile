@@ -22,7 +22,7 @@ RUN buildDeps='gcc libc6-dev libpcre3-dev libssl-dev make' \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 COPY docker-entrypoint.sh /entrypoint.sh
-COPY haproxy.cfg /haproxy.cfg
+COPY haproxy-web.cfg /haproxy.cfg
 
 RUN mkdir /data \
 	&& chmod +x /entrypoint.sh
