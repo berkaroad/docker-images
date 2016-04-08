@@ -43,5 +43,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "mysqld" ]
 
 EXPOSE 3306
+# Check DB Status
 EXPOSE 9200
+# Check Replication Status
 EXPOSE 9201

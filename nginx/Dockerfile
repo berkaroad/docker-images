@@ -29,8 +29,7 @@ WORKDIR /data
 
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "nginx", "-c", "/nginx.conf" ]
 
 EXPOSE 80
 EXPOSE 443
-
-CMD [ "nginx", "-c", "/nginx.conf" ]
