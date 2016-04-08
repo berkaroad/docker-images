@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN echo 'set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936' > /root/.vimrc
-	&& echo 'set termencoding=utf-8' >> /root/.vimrc
+RUN echo 'set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936' > /root/.vimrc \
+	&& echo 'set termencoding=utf-8' >> /root/.vimrc \
 	&& echo 'set encoding=utf-8' >> /root/.vimrc
 
 COPY docker-entrypoint.sh /entrypoint.sh
