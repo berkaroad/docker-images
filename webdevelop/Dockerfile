@@ -20,12 +20,13 @@ RUN echo 'set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936' > /root/.vim
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
-RUN mkdir /data \
+RUN mkdir -p /data/tmp \
 	mkdir -p /data/go \
 	&& chmod +x /entrypoint.sh
 
-VOLUME /data
-WORKDIR /data
+VOLUME /data/tmp
+VOLUME /data/go
+WORKDIR /data/tmp
 
 ENV GOPATH /data/go
 
