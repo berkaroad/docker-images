@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t registry.aliyuncs.com/freshncp/nginx .
+docker build -t registry.aliyuncs.com/freshncp/webdevelop .
