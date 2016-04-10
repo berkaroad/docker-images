@@ -40,3 +40,5 @@ CMD [ "redis-server", "/redis.conf" ]
 
 EXPOSE 6379
 EXPOSE 16379
+EXPOSE 6380
+EXPOSE 16380
