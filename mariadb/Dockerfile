@@ -32,12 +32,17 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 	&& mv /tmp/my.cnf /etc/mysql/my.cnf
 
 COPY docker-entrypoint.sh /entrypoint.sh
-#COPY my.cnf /my.cnf
+COPY my.cnf /etc/mysql/my.cnf
+COPY mariadb.cnf /etc/mysql/conf.d/mariadb.cnf
+COPY mysqld_safe_syslog.cnf /etc/mysql/conf.d/mysqld_safe_syslog.cnf
+COPY tokudb.cnf /etc/mysql/conf.d/tokudb.cnf
 
 RUN chmod +x /entrypoint.sh
 
 VOLUME /var/lib/mysql
-WORKDIR /data
+VOLUME /etc/mysql
+VOLUME /var/log/mysql
+WORKDIR /var/lib/mysql
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "mysqld" ]
