@@ -31,16 +31,16 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 	&& echo 'skip-host-cache\nskip-name-resolve' | awk '{ print } $1 == "[mysqld]" && c == 0 { c = 1; system("cat") }' /etc/mysql/my.cnf > /tmp/my.cnf \
 	&& mv /tmp/my.cnf /etc/mysql/my.cnf
 
-VOLUME /var/lib/mysql
-VOLUME /etc/mysql
-VOLUME /var/log/mysql
-WORKDIR /var/lib/mysql
-
 COPY docker-entrypoint.sh /entrypoint.sh
 COPY my.cnf /etc/mysql/my.cnf
 COPY mariadb.cnf /etc/mysql/conf.d/mariadb.cnf
 COPY mysqld_safe_syslog.cnf /etc/mysql/conf.d/mysqld_safe_syslog.cnf
 COPY tokudb.cnf /etc/mysql/conf.d/tokudb.cnf
+
+VOLUME /var/lib/mysql
+VOLUME /etc/mysql/conf.d
+VOLUME /var/log/mysql
+WORKDIR /var/lib/mysql
 
 RUN chmod +x /entrypoint.sh
 
