@@ -96,5 +96,8 @@ if [ "$1" = 'mysqld' ]; then
 	fi
 
 	chown -R mysql:mysql "$DATADIR"
+	chown -R mysql:mysql /var/lib/mysql
+	chown -R mysql:mysql /etc/mysql/conf.d
+	chown -R mysql:mysql /var/log/mysql
 fi
 exec "$@"
