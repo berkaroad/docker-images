@@ -42,7 +42,10 @@ VOLUME /etc/mysql/conf.d
 VOLUME /var/log/mysql
 WORKDIR /var/lib/mysql
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh \
+	&& chown -R mysql:mysql /var/lib/mysql \
+	&& chown -R mysql:mysql /etc/mysql/conf.d \
+	&& chown -R mysql:mysql /var/log/mysql \
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "mysqld" ]
