@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 echo $SSH_AUTHORIZED_KEYS > /root/.ssh/authorized_keys
-cp -Rf /supervisor/*.conf /etc/supervisor/conf.d/ 2> /dev/null
+ls /supervisor/*.conf 2>dev/null | grep conf | xargs -i cp {} /etc/supervisor/conf.d
 exec "$@"
