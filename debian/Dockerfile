@@ -17,6 +17,6 @@ RUN chmod +x /usr/local/bin/gosu
 
 VOLUME /etc/supervisor/conf.d
 
-CMD [ "supervisord", "-c", "/supervisord.conf" ]
+CMD [ "supervisord" ]
 
 EXPOSE 22
