@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t registry.aliyuncs.com/freshncp/debian:jessie .
+docker build -t registry.aliyuncs.com/freshncp/debian .
