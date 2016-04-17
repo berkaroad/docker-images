@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY gosu /usr/local/bin/gosu
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-RUN chmod +x /usr/local/bin/gosu
+RUN chmod +x /usr/local/bin/gosu \
+	&& sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
 VOLUME /etc/supervisor/conf.d
 
