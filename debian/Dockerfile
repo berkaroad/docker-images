@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		supervisor \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV SSH_AUTHORIZED_KEYS
+ENV SSH_AUTHORIZED_KEYS ssh-rsa
 
 COPY docker-entrypoint.sh /entrypoint.sh
 COPY gosu /usr/local/bin/gosu
