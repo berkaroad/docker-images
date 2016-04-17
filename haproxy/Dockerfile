@@ -16,7 +16,6 @@ RUN buildDeps='gcc libc6-dev libpcre3-dev libssl-dev make' \
 	&& rm -r /usr/src/haproxy \
 	&& apt-get purge -y --auto-remove $buildDeps
 
-COPY docker-entrypoint.sh /entrypoint-haproxy.sh
 COPY haproxy-web.cfg /haproxy.cfg
 
 RUN mkdir /data \
