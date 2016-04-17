@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 echo $SSH_AUTHORIZED_KEYS > /root/.ssh/authorized_keys
-cp -Rf /supervisor/*.conf /etc/supervisor/conf.d/
+cp -Rf /supervisor/*.conf /etc/supervisor/conf.d/ 2> /dev/null
 exec "$@"
