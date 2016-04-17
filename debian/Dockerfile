@@ -22,6 +22,8 @@ RUN chmod +x /entrypoint.sh \
 	&& sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config \
 	&& mkdir -p /root/.ssh \
 	&& mkdir -p /var/run/sshd \
+	&& echo '[program:sshd]' > /etc/supervisor/conf.d/sshd.conf \
+	&& echo 'command=/usr/sbin/sshd -D' >> /etc/supervisor/conf.d/sshd.conf \
 	&& echo 'set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936' > /root/.vimrc \
 	&& echo 'set termencoding=utf-8' >> /root/.vimrc \
 	&& echo 'set encoding=utf-8' >> /root/.vimrc \
