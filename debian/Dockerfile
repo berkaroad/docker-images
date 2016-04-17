@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		curl \
 		apt-utils \
 		openssh-server \
-		nano \
+		vim \
+		git \
 		supervisor \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -19,7 +20,12 @@ COPY supervisord.conf /etc/supervisor/supervisord.conf
 RUN chmod +x /entrypoint.sh \
 	&& chmod +x /usr/local/bin/gosu \
 	&& sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config \
-	&& mkdir -p /root/.ssh
+	&& sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config \
+	&& mkdir -p /root/.ssh \
+	&& mkdir -p /var/run/sshd \
+	&& echo 'set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936' > /root/.vimrc \
+	&& echo 'set termencoding=utf-8' >> /root/.vimrc \
+	&& echo 'set encoding=utf-8' >> /root/.vimrc
 
 VOLUME /etc/supervisor/conf.d
 
