@@ -1,11 +1,6 @@
-FROM debian:jessie
+#FROM debian:jessie
+FROM registry.aliyuncs.com/freshncp/debian
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		ca-certificates \
-		curl \
-		apt-utils \
-	&& rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
@@ -33,21 +28,17 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf \
 	&& echo 'skip-host-cache\nskip-name-resolve' | awk '{ print } $1 == "[mysqld]" && c == 0 { c = 1; system("cat") }' /etc/mysql/my.cnf > /tmp/my.cnf \
 	&& mv /tmp/my.cnf /etc/mysql/my.cnf
 
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint-mariadb.sh
 COPY my.cnf /etc/mysql/my.cnf
-COPY mariadb.cnf /etc/mysql/mariadb.cnf
-COPY mysqld_safe_syslog.cnf /etc/mysql/mysqld_safe_syslog.cnf
-COPY tokudb.cnf /etc/mysql/conf.d/tokudb.cnf
 
 VOLUME /var/lib/mysql
 VOLUME /etc/mysql/conf.d
 VOLUME /var/log/mysql
 WORKDIR /var/lib/mysql
 
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "mysqld" ]
+RUN chmod +x /entrypoint-mariadb.sh \
+	&& echo '[program:mysqld]' > /etc/supervisor/conf.d/mysqld.conf \
+	&& echo 'command=/entrypoint.sh mysqld' >> /etc/supervisor/conf.d/mysqld.conf
 
 EXPOSE 3306
 # Check DB Status
