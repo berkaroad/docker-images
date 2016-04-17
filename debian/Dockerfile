@@ -24,9 +24,10 @@ RUN chmod +x /entrypoint.sh \
 	&& mkdir -p /var/run/sshd \
 	&& echo 'set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936' > /root/.vimrc \
 	&& echo 'set termencoding=utf-8' >> /root/.vimrc \
-	&& echo 'set encoding=utf-8' >> /root/.vimrc
+	&& echo 'set encoding=utf-8' >> /root/.vimrc \
+	&& mkdir -p /supervisor
 
-VOLUME /etc/supervisor/conf.d
+VOLUME /supervisor
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "supervisord" ]
