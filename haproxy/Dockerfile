@@ -16,18 +16,17 @@ RUN buildDeps='gcc libc6-dev libpcre3-dev libssl-dev make' \
 	&& rm -r /usr/src/haproxy \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+COPY docker-entrypoint.sh /entrypoint-haproxy.sh
 COPY haproxy-web.cfg /haproxy.cfg
 
-RUN mkdir /data
+RUN mkdir /data \
+	&& echo '[program:haproxy]' > /etc/supervisor/conf.d/haproxy.conf \
+	&& echo 'command=haproxy -f /haproxy.cfg' >> /etc/supervisor/conf.d/haproxy.conf
 
 VOLUME /data
-WORKDIR /data
-
-ENTRYPOINT ["/entrypoint.sh"]
-CMD [ "haproxy", "-f", "/haproxy.cfg" ]
 
 EXPOSE 80
 EXPOSE 443
 EXPOSE 3306
-EXPOSE 3307
+EXPOSE 13306
 EXPOSE 8888
