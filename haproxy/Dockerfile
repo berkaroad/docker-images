@@ -1,11 +1,6 @@
-FROM debian:jessie
+#FROM debian:jessie
+FROM registry.aliyuncs.com/freshncp/debian
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		ca-certificates \
-		curl \
-		apt-utils \
-	&& rm -rf /var/lib/apt/lists/*
 
 COPY haproxy-1.6.4.tar.gz haproxy.tar.gz
 
@@ -21,11 +16,9 @@ RUN buildDeps='gcc libc6-dev libpcre3-dev libssl-dev make' \
 	&& rm -r /usr/src/haproxy \
 	&& apt-get purge -y --auto-remove $buildDeps
 
-COPY docker-entrypoint.sh /entrypoint.sh
 COPY haproxy-web.cfg /haproxy.cfg
 
-RUN mkdir /data \
-	&& chmod +x /entrypoint.sh
+RUN mkdir /data
 
 VOLUME /data
 WORKDIR /data
