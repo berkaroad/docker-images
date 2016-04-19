@@ -1,5 +1,5 @@
 #FROM debian:jessie
-FROM registry.aliyuncs.com/freshncp/debian
+FROM registry.aliyuncs.com/freshncp/debian-ssh
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 
 COPY haproxy-1.6.4.tar.gz haproxy.tar.gz
@@ -16,11 +16,15 @@ RUN buildDeps='gcc libc6-dev libpcre3-dev libssl-dev make' \
 	&& rm -r /usr/src/haproxy \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+COPY docker-entrypoint.sh /entrypoint-haproxy.sh
 COPY haproxy-web.cfg /haproxy.cfg
 
-RUN mkdir /data \
+RUN chmod +x /entrypoint-haproxy.sh \
+	&& mkdir /data \
 	&& echo '[program:haproxy]' > /etc/supervisor/conf.d/haproxy.conf \
-	&& echo 'command=haproxy -f /haproxy.cfg' >> /etc/supervisor/conf.d/haproxy.conf
+	&& echo 'command=/entrypoint-haproxy.sh /usr/bin/haproxy -f /haproxy.cfg' >> /etc/supervisor/conf.d/haproxy.conf \
+	&& echo 'autostart=true' >> /etc/supervisor/conf.d/haproxy.conf \
+	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/haproxy.conf
 
 VOLUME /data
 
