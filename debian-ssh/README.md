@@ -7,15 +7,15 @@
     fi
     authorized_keys=`cat $(pwd)/id_rsa.pub`
 
-    #docker pull registry.aliyuncs.com/freshncp/debian
-    docker stop debian 2> /dev/null
-    docker rm debian 2> /dev/null
+    #docker pull registry.aliyuncs.com/freshncp/debian-ssh
+    docker stop debian-ssh 2> /dev/null
+    docker rm debian-ssh 2> /dev/null
 
-    docker run --name debian -d \
+    docker run --name debian-ssh -d \
         -e SSH_ROOT="$authorized_keys" \
         -p 9022:22 \
         -v `pwd`/data/supervisor:/supervisor \
-        registry.aliyuncs.com/freshncp/debian
+        registry.aliyuncs.com/freshncp/debian-ssh
 
     cat `pwd`/id_rsa
 
