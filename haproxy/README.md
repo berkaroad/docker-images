@@ -14,7 +14,8 @@
     docker run --name haproxy -d \
         -e SSH_ROOT="$authorized_keys" \
         -p 9022:22 \
-        -v `pwd`/data/supervisor:/supervisor \
+        -v `pwd`/haproxy:/data \
+        -v `pwd`/supervisor:/supervisor \
         registry.aliyuncs.com/freshncp/haproxy
 
     cat `pwd`/id_rsa
@@ -28,7 +29,7 @@
 在容器目录/supervisor下添加配置文件，如haproxy.conf
 
     [program:sshd]
-    command=/entrypoint-haproxy.sh /usr/sbin/sshd -D
+    command=/entrypoint-haproxy.sh /usr/local/sbin/haproxy -f /data/haproxy.cfg
     autostart=true
     autorestart=true
     redirect_stderr=true

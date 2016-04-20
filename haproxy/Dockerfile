@@ -22,7 +22,7 @@ COPY haproxy-web.cfg /haproxy.cfg
 RUN chmod +x /entrypoint-haproxy.sh \
 	&& mkdir /data \
 	&& echo '[program:haproxy]' > /etc/supervisor/conf.d/haproxy.conf \
-	&& echo 'command=/entrypoint-haproxy.sh /usr/bin/haproxy -f /haproxy.cfg' >> /etc/supervisor/conf.d/haproxy.conf \
+	&& echo 'command=/entrypoint-haproxy.sh /usr/local/sbin/haproxy -f /haproxy.cfg' >> /etc/supervisor/conf.d/haproxy.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/haproxy.conf \
 	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/haproxy.conf
 
