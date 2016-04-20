@@ -6,7 +6,7 @@
     docker rm debian 2> /dev/null
 
     docker run --name debian -d \
-        -v `pwd`/data/supervisor:/supervisor \
+        -v `pwd`/supervisor:/supervisor \
         registry.aliyuncs.com/freshncp/debian
 
     cat `pwd`/id_rsa
