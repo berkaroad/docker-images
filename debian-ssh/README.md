@@ -14,7 +14,7 @@
     docker run --name debian-ssh -d \
         -e SSH_ROOT="$authorized_keys" \
         -p 9022:22 \
-        -v `pwd`/data/supervisor:/supervisor \
+        -v `pwd`/supervisor:/supervisor \
         registry.aliyuncs.com/freshncp/debian-ssh
 
     cat `pwd`/id_rsa
