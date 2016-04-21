@@ -33,7 +33,7 @@
 
 在容器目录/supervisor下添加配置文件，如haproxy.conf
 
-    [program:sshd]
+    [program:haproxy]
     command=/entrypoint-haproxy.sh /usr/local/sbin/haproxy -f /data/haproxy.cfg
     autostart=true
     autorestart=true
