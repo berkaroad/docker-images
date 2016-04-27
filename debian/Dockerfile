@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		apt-utils \
 		vim \
 		supervisor \
+		net-tools \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /entrypoint.sh
