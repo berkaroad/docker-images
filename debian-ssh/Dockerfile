@@ -13,6 +13,7 @@ COPY docker-entrypoint.sh /entrypoint-openssh.sh
 RUN chmod +x /entrypoint-openssh.sh \
 	&& sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config \
 	&& sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config \
+	&& echo 'GatewayPorts yes' >> /etc/ssh/sshd_config \
 	&& mkdir -p /root/.ssh \
 	&& mkdir -p /var/run/sshd \
 	&& echo '[program:sshd]' > /etc/supervisor/conf.d/sshd.conf \
