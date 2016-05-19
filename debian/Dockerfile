@@ -16,6 +16,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY docker-entrypoint.sh /entrypoint.sh
 COPY gosu /usr/local/bin/gosu
 COPY supervisord.conf /etc/supervisor/supervisord.conf
+RUN mkdir -p /usr/share/fonts/truetype/microsoft
+COPY arial.ttf /usr/share/fonts/truetype/microsoft/arial.ttf
+COPY simsun.ttf /usr/share/fonts/truetype/microsoft/simsun.ttf
+RUN cd /usr/share/fonts/truetype/microsoft \
+	&& mkfontscale \
+	&& mkfontdir \
+	&& fc-cache
+	&& cd /root
 
 RUN chmod +x /entrypoint.sh \
 	&& chmod +x /usr/local/bin/gosu \
