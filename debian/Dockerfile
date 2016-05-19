@@ -4,10 +4,13 @@ MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
+		wget \
 		apt-utils \
 		vim \
 		supervisor \
 		net-tools \
+		language-pack-en \
+		language-pack-zh-hans \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY docker-entrypoint.sh /entrypoint.sh
