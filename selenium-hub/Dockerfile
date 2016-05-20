@@ -16,7 +16,8 @@ COPY docker-entrypoint.sh /entrypoint-selenium-hub.sh
 COPY generate_config /opt/selenium/generate_config
 
 RUN chmod +x /entrypoint-selenium-hub.sh \
+	&& chmod +x /opt/selenium/generate_config \
 	&& echo '[program:selenium-hub]' > /etc/supervisor/conf.d/selenium-hub.conf \
-	&& echo 'command=/entrypoint-selenium-hub.sh /entrypoint-selenium-hub.sh' >> /etc/supervisor/conf.d/selenium-hub.conf \
+	&& echo 'command=/entrypoint-selenium-hub.sh' >> /etc/supervisor/conf.d/selenium-hub.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/selenium-hub.conf \
 	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/selenium-hub.conf
