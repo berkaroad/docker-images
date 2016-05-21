@@ -1,14 +1,6 @@
 FROM registry.aliyuncs.com/freshncp/selenium-nodebase
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    	xvfb \
-		wget \
-		fontconfig \
-		fonts-wqy-zenhei \
-		ttf-wqy-zenhei \
-  	&& rm -rf /var/lib/apt/lists/*
-
 #===============
 # Google Chrome
 #===============
