@@ -19,6 +19,7 @@ RUN chmod +x /entrypoint-openssh.sh \
 	&& echo '[program:sshd]' > /etc/supervisor/conf.d/sshd.conf \
 	&& echo 'command=/entrypoint-openssh.sh /usr/sbin/sshd -D' >> /etc/supervisor/conf.d/sshd.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/sshd.conf \
-	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/sshd.conf
+	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/sshd.conf \
+	&& echo 'redirect_stderr=true' >> /etc/supervisor/conf.d/sshd.conf
 
 EXPOSE 22
