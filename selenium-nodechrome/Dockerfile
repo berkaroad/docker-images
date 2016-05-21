@@ -4,12 +4,9 @@ MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 #===============
 # Google Chrome
 #===============
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-	&& echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
-	&& apt-get update && apt-get install -y --no-install-recommends \
-  		google-chrome-stable \
-  	&& rm /etc/apt/sources.list.d/google-chrome.list \
-  	&& rm -rf /var/lib/apt/lists/*
+COPY google-chrome-stable_50.0.2661.102-1_amd64.deb /tmp/google-chrome-stable_amd64.deb
+RUN dpkg -i /tmp/google-chrome-stable_amd64.deb \
+	&& rm /tmp/google-chrome-stable_amd64.deb
 
 #==================
 # Chrome webdriver
