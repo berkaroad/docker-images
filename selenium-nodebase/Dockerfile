@@ -10,6 +10,8 @@ ENV SCREEN_DEPTH 24
 ENV DISPLAY :99.0
   
 RUN apt-get update && apt-get install -y --no-install-recommends \
+		xorg \
+		xauth \
     	xvfb \
 	&& rm -rf /var/lib/apt/lists/*
 

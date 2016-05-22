@@ -14,6 +14,7 @@
     docker run --name selenium-nodechrome -d \
         -e SSH_ROOT="$authorized_keys" \
         -v `pwd`/supervisor:/supervisor \
+        --link selenium-hub:hub \
         registry.aliyuncs.com/freshncp/selenium-nodechrome
 
     cat `pwd`/id_rsa
