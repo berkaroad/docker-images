@@ -4,6 +4,21 @@ MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 #===============
 # Google Chrome
 #===============
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libxss1 \
+        fonts-liberation \
+        libappindicator1 \
+        xdg-utils \
+        gconf-service \
+        libasound2 \
+        libatk1.0-0 \
+        libcairo2 \
+        libgconf-2-4 \
+        libgdk-pixbuf2.0-0 \
+        libgtk2.0-0 \
+        libpango1.0-0 \
+        libxcomposite1 \
+    && rm -rf /var/lib/apt/lists/*
 COPY google-chrome-stable_50.0.2661.102-1_amd64.deb /tmp/google-chrome-stable_amd64.deb
 RUN dpkg -i /tmp/google-chrome-stable_amd64.deb \
 	&& rm /tmp/google-chrome-stable_amd64.deb
