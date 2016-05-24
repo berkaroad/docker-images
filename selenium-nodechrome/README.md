@@ -13,6 +13,10 @@
 
     docker run --name selenium-nodechrome -d \
         -e SSH_ROOT="$authorized_keys" \
+        -e SCREEN_WIDTH="1280" \
+        -e SCREEN_HEIGHT="1600" \
+        -e SCREEN_DEPTH="16" \
+        -e DISPLAY="90.0" \
         -v `pwd`/supervisor:/supervisor \
         --link selenium-hub:hub \
         registry.aliyuncs.com/freshncp/selenium-nodechrome
