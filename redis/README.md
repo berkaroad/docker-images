@@ -17,6 +17,7 @@
         -v `pwd`/redis:/data \
         -p 6379:6379 \
         -p 16379:16379 \
+        --privileged=true \
         registry.aliyuncs.com/freshncp/redis
 
     cat `pwd`/id_rsa
