@@ -24,4 +24,6 @@ RUN chmod +x /entrypoint-elasticsearch.sh \
 
 VOLUME /usr/share/elasticsearch/data
 VOLUME /usr/share/elasticsearch/config/scripts
+WORKDIR /usr/share/elasticsearch
+
 EXPOSE 9200 9300

@@ -11,3 +11,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN  mkdir -p /opt/selenium
 # wget --no-verbose https://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar -O /opt/selenium/selenium-server-standalone.jar
 COPY selenium-server-standalone-2.53.0.jar /opt/selenium/selenium-server-standalone.jar
+
+WORKDIR /opt/selenium
