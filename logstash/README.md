@@ -7,6 +7,7 @@
 
     docker run --name logstash -d \
         -v `pwd`/supervisor:/supervisor \
+        -v `pwd`/logstash:/data \
         --link redis:redis \
         --link elasticsearch:elasticsearch \
         registry.aliyuncs.com/freshncp/logstash

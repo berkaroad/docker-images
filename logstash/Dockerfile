@@ -4,6 +4,7 @@ MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libzmq3 \
     openjdk-7-jre-headless \
+    logrotate \
   && rm -rf /var/lib/apt/lists/*
 
 RUN sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security
@@ -28,3 +29,4 @@ RUN chmod +x /entrypoint-logstash.sh \
 	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/logstash.conf
 
 VOLUME /data
+WORKDIR /opt/logstash
