@@ -1,15 +1,22 @@
 ##创建容器运行脚本run.sh
 
     #/bin/bash
+    #rm -rf `pwd`/id_rsa* 2> /dev/null
+    if [ ! -f `pwd`/id_rsa ]; then
+        ssh-keygen -t rsa -N '' -f `pwd`/id_rsa > /dev/null
+    fi
+    authorized_keys=`cat $(pwd)/id_rsa.pub`
+
     #docker pull registry.aliyuncs.com/freshncp/logstash
     docker stop logstash 2> /dev/null
     docker rm logstash 2> /dev/null
 
     docker run --name logstash -d \
+        -e SSH_ROOT="$authorized_keys" \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/logstash:/data \
         --link redis:redis \
-        --link elasticsearch:elasticsearch \
+        --link elasticsearch:es \
         registry.aliyuncs.com/freshncp/logstash
 
     cat `pwd`/id_rsa
