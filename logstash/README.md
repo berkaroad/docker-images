@@ -30,7 +30,7 @@
 在容器目录/supervisor下添加配置文件，如logstash.conf
 
     [program:logstash]
-    command=/opt/logstash/bin/logstash -f /data/logstash.cfg
+    command=/opt/logstash/bin/logstash agent -f /data/logstash.cfg
     autostart=true
     autorestart=true
     redirect_stderr=true
@@ -41,9 +41,9 @@
       stdin {
       }
       redis {
-        host => "a00"
+        host => "127.0.0.1"
         port => "6379"
-        key => "events"
+        key => "logstash:demo"
         data_type => "list"
         codec => "json"
         type => "logstash-redis-demo"
@@ -63,7 +63,7 @@
         codec => rubydebug
       }
       elasticsearch {
-        host => "a01"
+        hosts => ["127.0.0.1:9200"]
         flush_size => 10240
       }
     }
