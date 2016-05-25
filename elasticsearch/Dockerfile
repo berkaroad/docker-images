@@ -1,10 +1,5 @@
-FROM registry.aliyuncs.com/freshncp/debian-ssh
+FROM registry.aliyuncs.com/freshncp/java
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    openjdk-7-jre-headless \
-  && rm -rf /var/lib/apt/lists/*
-RUN sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security
 
 COPY elasticsearch-2.3.3.deb /tmp/elasticsearch.deb
 RUN dpkg -i /tmp/elasticsearch.deb \

@@ -1,13 +1,10 @@
-FROM registry.aliyuncs.com/freshncp/debian-ssh
+FROM registry.aliyuncs.com/freshncp/java
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libzmq3 \
-    openjdk-7-jre-headless \
     logrotate \
   && rm -rf /var/lib/apt/lists/*
-
-RUN sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security
 
 RUN mkdir -p /usr/local/lib \
     && ln -s /usr/lib/*/libzmq.so.3 /usr/local/lib/libzmq.so
