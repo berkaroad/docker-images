@@ -20,7 +20,7 @@ filter {
 
 output {
   elasticsearch {
-    host => \"$ES_PORT_9300_TCP_ADDR\"
+    hosts => [\"$ES_PORT_9300_TCP_ADDR:$ES_PORT_9300_TCP_PORT\"]
     flush_size => 10240
   }
 }"
