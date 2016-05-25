@@ -22,14 +22,11 @@ COPY haproxy-web.cfg /haproxy.cfg
 RUN chmod +x /entrypoint-haproxy.sh \
 	&& mkdir /data \
 	&& echo '[program:haproxy]' > /etc/supervisor/conf.d/haproxy.conf \
-	&& echo 'command=/entrypoint-haproxy.sh /usr/local/sbin/haproxy -f /haproxy.cfg' >> /etc/supervisor/conf.d/haproxy.conf \
+	&& echo 'command=/entrypoint-haproxy.sh' >> /etc/supervisor/conf.d/haproxy.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/haproxy.conf \
 	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/haproxy.conf
 
 VOLUME /data
 
-EXPOSE 80
-EXPOSE 443
-EXPOSE 3306
-EXPOSE 13306
-EXPOSE 8888
+EXPOSE 80 443 8888
+EXPOSE 3306 13306

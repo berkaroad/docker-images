@@ -1,4 +1,3 @@
 #!/bin/bash
 set -e
-
-exec "$@"
+/usr/local/sbin/haproxy -f /haproxy.cfg
