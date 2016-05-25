@@ -1,3 +1,6 @@
 #!/bin/bash
 set -e
-/usr/share/elasticsearch/bin/elasticsearch
+chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config
+chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/logs
+gosu elasticsearch /usr/share/elasticsearch/bin/elasticsearch

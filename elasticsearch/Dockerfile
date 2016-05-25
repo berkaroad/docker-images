@@ -20,6 +20,8 @@ COPY config /usr/share/elasticsearch/config
 
 RUN chmod +x /entrypoint-elasticsearch.sh \
 	&& mkdir -p /usr/share/elasticsearch/data \
+	&& mkdir -p /usr/share/elasticsearch/config/scripts \
+	&& mkdir -p /usr/share/elasticsearch/logs \
 	&& echo '[program:elasticsearch]' > /etc/supervisor/conf.d/elasticsearch.conf \
 	&& echo 'command=/entrypoint-elasticsearch.sh' >> /etc/supervisor/conf.d/elasticsearch.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/elasticsearch.conf \
