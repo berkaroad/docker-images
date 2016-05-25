@@ -21,8 +21,10 @@ RUN mkdir -p /usr/local/lib \
 
 COPY docker-entrypoint.sh /entrypoint-logstash.sh
 COPY logstash.cfg /logstash.cfg
+COPY generate_config.sh /opt/logstash/bin/generate_config.sh
 
 RUN chmod +x /entrypoint-logstash.sh \
+	&& chmod +x /opt/logstash/bin/generate_config.sh \
 	&& mkdir /data \
 	&& echo '[program:logstash]' > /etc/supervisor/conf.d/logstash.conf \
 	&& echo 'command=/entrypoint-logstash.sh' >> /etc/supervisor/conf.d/logstash.conf \
