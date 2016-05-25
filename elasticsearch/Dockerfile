@@ -28,5 +28,5 @@ RUN chmod +x /entrypoint-elasticsearch.sh \
 	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/elasticsearch.conf
 
 VOLUME /usr/share/elasticsearch/data
-
+VOLUME /usr/share/elasticsearch/config/scripts
 EXPOSE 9200 9300
