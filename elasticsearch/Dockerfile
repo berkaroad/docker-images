@@ -5,7 +5,8 @@ COPY elasticsearch-2.3.3.deb /tmp/elasticsearch.deb
 RUN dpkg -i /tmp/elasticsearch.deb \
 	&& rm /tmp/elasticsearch.deb
 
-RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head \
+	&& /usr/share/elasticsearch/bin/plugin install lukas-vlcek/bigdesk
 
 COPY docker-entrypoint.sh /entrypoint-elasticsearch.sh
 COPY config /usr/share/elasticsearch/config
