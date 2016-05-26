@@ -6,7 +6,8 @@ RUN dpkg -i /tmp/elasticsearch.deb \
 	&& rm /tmp/elasticsearch.deb
 
 RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head \
-	&& /usr/share/elasticsearch/bin/plugin install lukas-vlcek/bigdesk
+	&& /usr/share/elasticsearch/bin/plugin install license \
+	&& /usr/share/elasticsearch/bin/plugin install watcher
 
 COPY docker-entrypoint.sh /entrypoint-elasticsearch.sh
 COPY config /usr/share/elasticsearch/config
