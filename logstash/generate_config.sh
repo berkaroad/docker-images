@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ "LOGSTASH_ROLE" = "central" ]; then
+if [ "$LOGSTASH_ROLE" = "central" ]; then
   echo "input {
   redis {
     host => \"$REDIS_PORT_6379_TCP_ADDR\"
@@ -25,7 +25,7 @@ output {
     flush_size => 10240
   }
 }"
-elif [ "LOGSTASH_ROLE" = "shipper" ]; then
+elif [ "$LOGSTASH_ROLE" = "shipper" ]; then
   echo "input {
   http {
     host => \"0.0.0.0\"

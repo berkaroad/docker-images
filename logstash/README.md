@@ -43,6 +43,7 @@
         -e LOGSTASH_INPUT_HTTP_CODEC="json" \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/logstash:/data \
+        -p 8080:8080
         --link redis:redis \
         registry.aliyuncs.com/freshncp/logstash
 
