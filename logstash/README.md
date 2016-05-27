@@ -1,4 +1,4 @@
-##创建容器运行脚本run.sh
+##创建logstash-central容器运行脚本run.sh
 
     #/bin/bash
     #rm -rf `pwd`/id_rsa* 2> /dev/null
@@ -8,8 +8,6 @@
     authorized_keys=`cat $(pwd)/id_rsa.pub`
 
     #docker pull registry.aliyuncs.com/freshncp/logstash
-
-    # logstash central
     docker stop logstash-central 2> /dev/null
     docker rm logstash-central 2> /dev/null
 
@@ -23,7 +21,18 @@
         --link elasticsearch:es \
         registry.aliyuncs.com/freshncp/logstash
 
-    # logstash shipper
+    cat `pwd`/id_rsa
+
+##创建logstash-shipper容器运行脚本run.sh
+
+    #/bin/bash
+    #rm -rf `pwd`/id_rsa* 2> /dev/null
+    if [ ! -f `pwd`/id_rsa ]; then
+        ssh-keygen -t rsa -N '' -f `pwd`/id_rsa > /dev/null
+    fi
+    authorized_keys=`cat $(pwd)/id_rsa.pub`
+
+    #docker pull registry.aliyuncs.com/freshncp/logstash
     docker stop logstash-shipper 2> /dev/null
     docker rm logstash-shipper 2> /dev/null
 
@@ -38,6 +47,7 @@
         registry.aliyuncs.com/freshncp/logstash
 
     cat `pwd`/id_rsa
+
 
 ##进行ssh连接
 
