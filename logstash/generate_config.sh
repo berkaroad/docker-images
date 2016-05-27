@@ -1,13 +1,14 @@
 #!/bin/sh
-echo "input {
+if [ "LOGSTASH_ROLE" = "central" ]; then
+  echo "input {
   redis {
     host => \"$REDIS_PORT_6379_TCP_ADDR\"
     port => \"$REDIS_PORT_6379_TCP_PORT\"
-    key => \"logstash:demo\"
+    key => \"logstash:$LOGSTASH_ID\"
     data_type => \"list\"
     codec => \"json\"
-    type => \"logstash-redis-demo\"
-    tags => [\"logstashdemo\"]
+    type => \"logstash-redis-$LOGSTASH_ID\"
+    tags => [\"logstash\"]
   }
 }
 
@@ -24,3 +25,30 @@ output {
     flush_size => 10240
   }
 }"
+elif [ "LOGSTASH_ROLE" = "shipper" ]; then
+  echo "input {
+  http {
+    host => \"0.0.0.0\"
+    port => 8080
+    additional_codecs => {\"application/json\"=>\"json\"}
+    codec => \"$LOGSTASH_INPUT_HTTP_CODEC\"
+    threads => 1
+    ssl => false
+  }
+}
+
+filter {
+  geoip {
+    source => \"[extra][ip]\"
+    add_tag => [ \"geoip\" ]
+  }
+}
+
+output {
+  redis {
+    host => \"$REDIS_PORT_6379_TCP_ADDR:$REDIS_PORT_6379_TCP_PORT\"
+    data_type => \"list\"
+    key => \"logstash:$LOGSTASH_ID\"
+  }
+}"
+fi

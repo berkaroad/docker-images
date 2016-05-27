@@ -27,3 +27,11 @@ RUN chmod +x /entrypoint-logstash.sh \
 
 VOLUME /data
 WORKDIR /opt/logstash
+
+# $LOGSTASH_ROLE = "central" | "shipper"
+ENV LOGSTASH_ROLE "central"
+ENV LOGSTASH_ID "demo"
+# LOGSTASH_INPUT_HTTP_CODEC = "plain" | "json"
+ENV LOGSTASH_INPUT_HTTP_CODEC "json"
+
+EXPOSE 8080
