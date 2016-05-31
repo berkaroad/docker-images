@@ -5,14 +5,17 @@ COPY elasticsearch-2.3.3.deb /tmp/elasticsearch.deb
 RUN dpkg -i /tmp/elasticsearch.deb \
 	&& rm /tmp/elasticsearch.deb
 
-RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head \
-	&& /usr/share/elasticsearch/bin/plugin install license \
-	&& /usr/share/elasticsearch/bin/plugin install watcher
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+
+ENV ELASTICSEARCH_CLUSTERNAME "elasticsearch"
+ENV ELASTICSEARCH_NODENAME "node1"
+ENV $ELASTICSEARCH_RACK "rack1"
 
 COPY docker-entrypoint.sh /entrypoint-elasticsearch.sh
 COPY config /usr/share/elasticsearch/config
-
+COPY generate_elasticsearchconfig.sh /usr/share/elasticsearch/bin/generate_elasticsearchconfig.sh
 RUN chmod +x /entrypoint-elasticsearch.sh \
+	&& chomd +x /usr/share/elasticsearch/bin/generate_elasticsearchconfig.sh \
 	&& mkdir -p /usr/share/elasticsearch/data \
 	&& mkdir -p /usr/share/elasticsearch/config/scripts \
 	&& mkdir -p /usr/share/elasticsearch/logs \
