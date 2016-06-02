@@ -38,7 +38,7 @@ WORKDIR /var/lib/mysql
 
 RUN chmod +x /entrypoint-mariadb.sh \
 	&& echo '[program:mysqld]' > /etc/supervisor/conf.d/mysqld.conf \
-	&& echo 'command=/entrypoint.mariadb.sh mysqld' >> /etc/supervisor/conf.d/mysqld.conf
+	&& echo 'command=/entrypoint-mariadb.sh' >> /etc/supervisor/conf.d/mysqld.conf
 
 EXPOSE 3306
 # Check DB Status
