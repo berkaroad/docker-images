@@ -9,8 +9,8 @@
         -e ELASTICSEARCH_CLUSTERNAME="elasticsearch" \
         -e ELASTICSEARCH_NODENAME="node1" \
         -e ELASTICSEARCH_RACK="rack1" \
-        -e ELASTICSEARCH_PUBLISH_HOST="127.0.0.1"
-        -e ELASTICSEARCH_UNICAST_HOSTS="[\"127.0.0.1:9300\"]"
+        -e ELASTICSEARCH_PUBLISH_HOST="127.0.0.1" \
+        -e ELASTICSEARCH_UNICAST_HOSTS="127.0.0.1:9300" \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/data/:/usr/share/elasticsearch/data \
         -v `pwd`/scripts/:/usr/share/elasticsearch/data \

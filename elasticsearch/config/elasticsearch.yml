@@ -38,6 +38,6 @@ discovery:
     ping:
       timeout: 10s
       multicast:
-        enabled: true
+        enabled: false
       unicast:
         hosts: ${ELASTICSEARCH_UNICAST_HOSTS}
