@@ -1,1 +1,39 @@
-network.host: 0.0.0.0
+cluster:
+  name: ${ELASTICSEARCH_CLUSTERNAME}
+  routing.allocation:
+    node_initial_primaries_recoveries: 4
+  routing.allocation:
+    node_concurrent_recoveries: 2
+
+node:
+  name: ${ELASTICSEARCH_NODENAME}
+  master: true
+  data: true
+  rack: ${ELASTICSEARCH_RACK}
+
+index:
+  number_of_shards: 5
+  number_of_replicas: 1
+
+network:
+  host: 0.0.0.0
+transport:
+  tcp:
+    port: 9300
+    compress: true
+http:
+  port: 9200
+  max_content_length: 100mb
+  enabled: true
+
+indices:
+  recovery:
+    max_size_per_sec: 100mb
+    concurrent_streams: 5
+
+discovery:
+  zen:
+    minimum_master_nodes: 1
+  ping:
+    timeout: 10s
+    multicast.enabled: true

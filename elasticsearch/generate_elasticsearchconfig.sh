@@ -10,7 +10,6 @@ node.rack: $ELASTICSEARCH_RACK
 
 index.number_of_shards: 5
 index.number_of_replicas: 1
-bootstrap.mlockall: true
 
 network.host: 0.0.0.0
 transport.tcp.port: 9300
@@ -19,10 +18,6 @@ http.port: 9200
 http.max_content_length: 100mb
 http.enabled: true
 
-gateway.type: local
-gateway.recover_after_nodes: 1
-gateway.recover_after_time: 5m
-gateway.expected_nodes: 2
 indices.recovery.max_size_per_sec: 100mb
 indices.recovery.concurrent_streams: 5
 
