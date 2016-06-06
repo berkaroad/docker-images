@@ -101,4 +101,4 @@ if [ "$1" = 'mysqld' ]; then
 	chown -R mysql:mysql /etc/mysql/conf.d
 	chown -R mysql:mysql /var/log/mysql
 fi
-gosu mysql /usr/sbin/mysqld
+exec gosu mysql $@

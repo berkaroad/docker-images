@@ -33,7 +33,7 @@
 在容器目录/supervisor下添加配置文件，如mysqld.conf
 
     [program:mysqld]
-    command=/entrypoint-mariadb.sh
+    command=/entrypoint-mariadb.sh mysqld
     autostart=true
     autorestart=true
     redirect_stderr=true
