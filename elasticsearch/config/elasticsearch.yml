@@ -12,8 +12,8 @@ node:
   rack: ${ELASTICSEARCH_RACK}
 
 index:
-  number_of_shards: 5
-  number_of_replicas: 1
+  number_of_shards: ${ELASTICSEARCH_SHARDS}
+  number_of_replicas: ${ELASTICSEARCH_REPLICAS}
 
 network:
   bind_host: 0.0.0.0
