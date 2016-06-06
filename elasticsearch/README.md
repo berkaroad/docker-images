@@ -9,6 +9,8 @@
         -e ELASTICSEARCH_CLUSTERNAME="elasticsearch" \
         -e ELASTICSEARCH_NODENAME="node1" \
         -e ELASTICSEARCH_RACK="rack1" \
+        -e ELASTICSEARCH_PUBLISH_HOST="127.0.0.1"
+        -e ELASTICSEARCH_UNICAST_HOSTS="[\"127.0.0.1:9300\"]"
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/data/:/usr/share/elasticsearch/data \
         -v `pwd`/scripts/:/usr/share/elasticsearch/data \
@@ -91,3 +93,4 @@
     discovery.zen.ping.timeout: 10s
     # 设置是否打开多播发现节点
     discovery.zen.ping.multicast.enabled: true
+    discovery.zen.ping.unicast.hosts: ["192.168.1.231:9300"]

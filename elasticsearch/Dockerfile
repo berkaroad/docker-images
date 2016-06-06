@@ -10,6 +10,8 @@ RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 ENV ELASTICSEARCH_CLUSTERNAME "elasticsearch"
 ENV ELASTICSEARCH_NODENAME "node1"
 ENV ELASTICSEARCH_RACK "rack1"
+ENV ELASTICSEARCH_PUBLISH_HOST "127.0.0.1"
+ENV ELASTICSEARCH_UNICAST_HOSTS "[\"127.0.0.1:9300\"]"
 
 COPY docker-entrypoint.sh /entrypoint-elasticsearch.sh
 COPY config /usr/share/elasticsearch/config

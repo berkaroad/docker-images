@@ -16,7 +16,8 @@ index:
   number_of_replicas: 1
 
 network:
-  host: 0.0.0.0
+  bind_host: 0.0.0.0
+  publish_host: ${ELASTICSEARCH_PUBLISH_HOST}
 transport:
   tcp:
     port: 9300
@@ -34,6 +35,9 @@ indices:
 discovery:
   zen:
     minimum_master_nodes: 1
-  ping:
-    timeout: 10s
-    multicast.enabled: true
+    ping:
+      timeout: 10s
+      multicast:
+        enabled: true
+      unicast:
+        hosts: ${ELASTICSEARCH_UNICAST_HOSTS}
