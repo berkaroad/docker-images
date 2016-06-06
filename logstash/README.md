@@ -1,4 +1,4 @@
-##创建logstash-central容器运行脚本run.sh
+##创建logstash-indexer容器运行脚本run.sh
 
     #/bin/bash
     #rm -rf `pwd`/id_rsa* 2> /dev/null
@@ -8,12 +8,12 @@
     authorized_keys=`cat $(pwd)/id_rsa.pub`
 
     #docker pull registry.aliyuncs.com/freshncp/logstash
-    docker stop logstash-central 2> /dev/null
-    docker rm logstash-central 2> /dev/null
+    docker stop logstash-indexer 2> /dev/null
+    docker rm logstash-indexer 2> /dev/null
 
-    docker run --name logstash-central -d \
+    docker run --name logstash-indexer -d \
         -e SSH_ROOT="$authorized_keys" \
-        -e LOGSTASH_ROLE="central" \
+        -e LOGSTASH_ROLE="indexer" \
         -e LOGSTASH_ID="demo" \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/logstash:/data \
@@ -79,13 +79,17 @@
         host => "0.0.0.0"
         port => 8080
         additional_codecs => {"application/json"=>"json"}
-        codec => "json"
+        codec => "plain"
         threads => 1
         ssl => false
       }
     }
 
     filter {
+      json {
+        source => "message"
+        target => "contents"
+      }
       geoip {
         source => "[extra][ip]"
         add_tag => [ "geoip" ]
@@ -100,7 +104,7 @@
       }
     }
 
-##logstash-central.cfg
+##logstash-indexer.cfg
 
     input {
       redis {

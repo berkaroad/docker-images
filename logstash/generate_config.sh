@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ "$LOGSTASH_ROLE" = "central" ]; then
+if [ "$LOGSTASH_ROLE" = "indexer" ]; then
   echo "input {
   redis {
     host => \"$REDIS_PORT_6379_TCP_ADDR\"
@@ -31,13 +31,17 @@ elif [ "$LOGSTASH_ROLE" = "shipper" ]; then
     host => \"0.0.0.0\"
     port => 8080
     additional_codecs => {\"application/json\"=>\"json\"}
-    codec => \"$LOGSTASH_INPUT_HTTP_CODEC\"
+    codec => \"plain\"
     threads => 1
     ssl => false
   }
 }
 
 filter {
+  json {
+    source => \"message\"
+    target => \"contents\"
+  }
   geoip {
     source => \"[extra][ip]\"
     add_tag => [ \"geoip\" ]
