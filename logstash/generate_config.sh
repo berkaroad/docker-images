@@ -29,11 +29,11 @@ filter {
 }
 
 output {
+$output_debug
   elasticsearch {
     hosts => [\"$ES_PORT_9200_TCP_ADDR:$ES_PORT_9200_TCP_PORT\"]
     flush_size => 10240
   }
-$output_debug
 }"
 elif [ "$LOGSTASH_ROLE" = "shipper" ]; then
   echo "input {
@@ -59,11 +59,11 @@ filter {
 }
 
 output {
+$output_debug
   redis {
     host => \"$REDIS_PORT_6379_TCP_ADDR:$REDIS_PORT_6379_TCP_PORT\"
     data_type => \"list\"
     key => \"logstash:$LOGSTASH_ID\"
   }
-$output_debug
 }"
 fi
