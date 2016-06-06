@@ -13,7 +13,6 @@ ENV ELASTICSEARCH_RACK "rack1"
 
 COPY docker-entrypoint.sh /entrypoint-elasticsearch.sh
 COPY config /usr/share/elasticsearch/config
-#COPY generate_elasticsearchconfig.sh /usr/share/elasticsearch/bin/generate_elasticsearchconfig.sh
 RUN chmod +x /entrypoint-elasticsearch.sh \
 	&& mkdir -p /usr/share/elasticsearch/data \
 	&& mkdir -p /usr/share/elasticsearch/config/scripts \
