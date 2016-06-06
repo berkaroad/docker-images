@@ -1,5 +1,4 @@
-#FROM debian:jessie
-FROM registry.aliyuncs.com/freshncp/debian
+FROM registry.aliyuncs.com/freshncp/debian-ssh
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 
 RUN groupadd -r mysql && useradd -r -g mysql mysql
