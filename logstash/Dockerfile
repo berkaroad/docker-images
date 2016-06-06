@@ -31,5 +31,6 @@ WORKDIR /opt/logstash
 # $LOGSTASH_ROLE = "indexer" | "shipper"
 ENV LOGSTASH_ROLE "indexer"
 ENV LOGSTASH_ID "demo"
+ENV LOGSTASH_DEBUG "false"
 
 EXPOSE 8080

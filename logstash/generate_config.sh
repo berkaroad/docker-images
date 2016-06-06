@@ -1,4 +1,13 @@
 #!/bin/sh
+output_debug=""
+if [ "$LOGSTASH_DEBUG" = "true" ]; then
+  output_debug="
+  stdout {
+    codec => rubydebug
+  }
+"
+fi
+
 if [ "$LOGSTASH_ROLE" = "indexer" ]; then
   echo "input {
   redis {
@@ -24,6 +33,7 @@ output {
     hosts => [\"$ES_PORT_9200_TCP_ADDR:$ES_PORT_9200_TCP_PORT\"]
     flush_size => 10240
   }
+$output_debug
 }"
 elif [ "$LOGSTASH_ROLE" = "shipper" ]; then
   echo "input {
@@ -54,5 +64,6 @@ output {
     data_type => \"list\"
     key => \"logstash:$LOGSTASH_ID\"
   }
+$output_debug
 }"
 fi

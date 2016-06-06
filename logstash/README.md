@@ -15,6 +15,7 @@
         -e SSH_ROOT="$authorized_keys" \
         -e LOGSTASH_ROLE="indexer" \
         -e LOGSTASH_ID="demo" \
+        -e LOGSTASH_DEBUG="true" \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/logstash:/data \
         --link redis:redis \
@@ -40,7 +41,7 @@
         -e SSH_ROOT="$authorized_keys" \
         -e LOGSTASH_ROLE="shipper" \
         -e LOGSTASH_ID="demo" \
-        -e LOGSTASH_INPUT_HTTP_CODEC="json" \
+        -e LOGSTASH_DEBUG="true" \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/logstash:/data \
         -p 8080:8080
@@ -68,6 +69,12 @@
 
     input {
       stdin {
+      }
+    }
+
+    output {
+      stdout {
+        codec => rubydebug
       }
     }
 
