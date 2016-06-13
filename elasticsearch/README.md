@@ -13,6 +13,8 @@
         -e ELASTICSEARCH_REPLICAS=1 \
         -e ELASTICSEARCH_PUBLISH_HOST="127.0.0.1" \
         -e ELASTICSEARCH_UNICAST_HOSTS="127.0.0.1:9300" \
+        -e ELASTICSEARCH_HTTP_PORT=9200 \
+        -e ELASTICSEARCH_TCP_PORT=9300 \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/data/:/usr/share/elasticsearch/data \
         -v `pwd`/scripts/:/usr/share/elasticsearch/data \
