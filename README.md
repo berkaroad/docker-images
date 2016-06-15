@@ -4,3 +4,7 @@ docker 镜像，可以直接从 [阿里容器Hub](https://dev.aliyun.com/list.ht
     docker pull registry.aliyuncs.com/freshncp/debian
     docker pull registry.aliyuncs.com/freshncp/debian-ssh
     docker pull registry.aliyuncs.com/freshncp/haproxy
+
+或者可以本地生成镜像
+
+    ./build.sh

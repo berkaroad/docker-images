@@ -13,6 +13,9 @@ if [ -f $0 ] && [ "$0" = "./build.sh" ]; then
     cd $DF_ROOT/haproxy
     chmod +x ./build.sh && ./build.sh
 
+    cd $DF_ROOT/mariadb
+    chmod +x ./build.sh && ./build.sh
+
     cd $DF_ROOT/redis
     chmod +x ./build.sh && ./build.sh
 
