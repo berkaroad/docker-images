@@ -23,7 +23,7 @@ COPY redis.conf /redis.conf
 RUN mkdir /data \
 	&& chmod +x /entrypoint-redis.sh \
 	&& echo '[program:redis]' > /etc/supervisor/conf.d/redis.conf \
-	&& echo 'command=/entrypoint-redis.sh' >> /etc/supervisor/conf.d/redis.conf \
+	&& echo 'command=/entrypoint-redis.sh /redis.conf' >> /etc/supervisor/conf.d/redis.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/redis.conf \
 	&& echo 'autorestart=true' >> /etc/supervisor/conf.d/redis.conf
 
