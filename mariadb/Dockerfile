@@ -17,6 +17,7 @@ RUN echo "mariadb-server-$MARIADB_MAJOR mysql-server/root_password password 'unu
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		mariadb-server=$MARIADB_VERSION \
+		xtrabackup \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/lib/mysql \
 	&& mkdir -p /var/lib/mysql \
