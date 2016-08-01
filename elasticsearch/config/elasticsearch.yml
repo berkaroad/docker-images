@@ -43,3 +43,5 @@ discovery:
         enabled: false
       unicast:
         hosts: ${ELASTICSEARCH_UNICAST_HOSTS}
+
+path.repo: ["/usr/share/elasticsearch/backups"]

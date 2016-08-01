@@ -98,3 +98,5 @@
     # 设置是否打开多播发现节点
     discovery.zen.ping.multicast.enabled: true
     discovery.zen.ping.unicast.hosts: ["192.168.1.231:9300"]
+    # 备份路径
+    path.repo: ["/usr/share/elasticsearch/backups"]

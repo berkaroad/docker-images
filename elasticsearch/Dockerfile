@@ -23,6 +23,7 @@ RUN chmod +x /entrypoint-elasticsearch.sh \
 	&& mkdir -p /usr/share/elasticsearch/data \
 	&& mkdir -p /usr/share/elasticsearch/config/scripts \
 	&& mkdir -p /usr/share/elasticsearch/logs \
+	&& mkdir -p /usr/share/elasticsearch/backups \
 	&& echo '[program:elasticsearch]' > /etc/supervisor/conf.d/elasticsearch.conf \
 	&& echo 'command=/entrypoint-elasticsearch.sh' >> /etc/supervisor/conf.d/elasticsearch.conf \
 	&& echo 'autostart=true' >> /etc/supervisor/conf.d/elasticsearch.conf \
@@ -30,6 +31,7 @@ RUN chmod +x /entrypoint-elasticsearch.sh \
 
 VOLUME /usr/share/elasticsearch/data
 VOLUME /usr/share/elasticsearch/config/scripts
+VOLUME /usr/share/elasticsearch/backups
 WORKDIR /usr/share/elasticsearch
 
 EXPOSE 9200 9300
