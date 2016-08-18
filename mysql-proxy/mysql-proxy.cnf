@@ -1,0 +1,18 @@
+[mysql-proxy]
+daemon = false
+user = mysql
+proxy-skip-profiling = true
+keepalive = true
+max-open-files = 2048
+event-threads = 50
+pid-file = /var/run/mysql-proxy.pid
+log-file = /var/log/mysql-proxy/generic.log
+log-level = debug
+admin-address=:4041
+admin-username=admin
+admin-password=123QWE
+admin-lua-script=/usr/lib/mysql-proxy/lua/admin.lua
+proxy-address = 0.0.0.0:4040
+proxy-backend-addresses = 192.168.0.124:3306
+proxy-read-only-backend-addresses=192.168.0.124:3305
+proxy-lua-script=/usr/lib/mysql-proxy/lua/proxy/balance.lua
