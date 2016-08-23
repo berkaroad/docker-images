@@ -1,4 +1,4 @@
-FROM registry.aliyuncs.com/freshncp/java
+FROM registry.aliyuncs.com/freshncp/debian-ssh
 MAINTAINER berkaroad "jiarong.bai198605@gmail.com"
 
 RUN apt-get update \
