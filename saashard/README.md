@@ -13,7 +13,8 @@
 
     docker run --name saashard -d \
         -e SSH_ROOT="$authorized_keys" \
-        -p 9696:9696 \
+        -p 6051:6051 \
+        -p 16051:16051 \
         -v `pwd`/supervisor:/supervisor \
         -v `pwd`/conf:/opt/saashard/conf \
         -v `pwd`/log:/opt/saashard/log \
